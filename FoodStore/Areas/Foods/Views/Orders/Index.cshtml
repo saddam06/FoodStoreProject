@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FoodStore.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-center btn-dark p-2 ">Order History</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>UserName</p>
+              
+            </th>
+            <th>
+               <p>ProductName</p>
+            </th>
+            <th>
+                <p>Quantity</p>
+               
+            </th>
+            <th>
+                <p>MoibileNumber</p>
+                
+            </th>
+            <th>
+                <p>UserAddress</p>
+                
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+               
+                @Html.DisplayFor(modelItem => item.User.UserFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoibileNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserAddress)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-success" asp-route-id="@item.OrderId">Edit</a> |
+                <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.OrderId">Details</a> |
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.OrderId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<p>
+    <a asp-action="Create" class="btn btn-dark mt-3" >Order More</a>
+</p>

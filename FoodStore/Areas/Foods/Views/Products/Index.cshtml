@@ -1,0 +1,66 @@
+﻿@model IEnumerable<FoodStore.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-center btn-dark p-2">Menu</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfProducts)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfProducts)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-success" asp-route-id="@item.ProductId">Edit</a> |
+                <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.ProductId">Details</a> |
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ProductId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<p>
+    
+
+
+    <span>
+        <a  class="btn btn-dark mt-3" style="margin-top:5px" href="https://localhost:44366/Foods/Orders/Create">Order Food</a>
+
+    </span>
+    <span>
+         <a asp-action="Create" class="btn btn-dark mt-3" >Create More</a>
+
+    </span>
+    
+   
+</p>

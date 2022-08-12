@@ -1,0 +1,42 @@
+﻿@model IEnumerable<FoodStore.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-center btn-dark p-2">Registered Users</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserLastName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserLastName)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-success" asp-route-id="@item.UserId">Edit</a> |
+                <a asp-action="Details" class="btn btn-dark" asp-route-id="@item.UserId">Details</a> |
+                <a asp-action="Delete"class="btn btn-danger" asp-route-id="@item.UserId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<p>
+    <a asp-action="Create" class="btn btn-dark mt-3">Register New User</a>
+</p>
