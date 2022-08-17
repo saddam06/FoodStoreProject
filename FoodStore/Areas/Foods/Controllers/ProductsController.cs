@@ -27,6 +27,20 @@ namespace FoodStore.Areas.Foods.Controllers
             return View(await applicationDbContexts.ToListAsync());
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> Index(string SeachString)
+        {
+            var products = from m in _context.Product select m;
+            if (!String.IsNullOrEmpty(SeachString))
+            {
+                products = products.Where(s => s.ProductDescription!.Contains(SeachString));
+            }
+            return View(await products.ToListAsync());
+
+        }
+
+
         // GET: Foods/Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -58,7 +72,7 @@ namespace FoodStore.Areas.Foods.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,ProductName,NumberOfProducts,Price,CategoryId")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductId,ProductName,ProductDescription,ImgUrl,NumberOfProducts,Price,CategoryId")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +106,7 @@ namespace FoodStore.Areas.Foods.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,NumberOfProducts,Price,CategoryId")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,ProductDescription,ImgUrl,NumberOfProducts,Price,CategoryId")] Product product)
         {
             if (id != product.ProductId)
             {

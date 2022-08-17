@@ -1,66 +1,64 @@
 ﻿@model IEnumerable<FoodStore.Models.Product>
 
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Menus";
 }
 
-<h2 class="text-center btn-dark p-2">Menu</h2>
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumberOfProducts)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfProducts)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryName)
-            </td>
-            <td>
-                <a asp-action="Edit" class="btn btn-success" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.ProductId">Details</a> |
-                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ProductId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+
+
+<div class="row g-0">
+    @foreach (var item in Model)
+    {
+
+
+
+        <div class="col-md-4 mb-3">
+            <div class="card mb-3" style="height:100%">
+                <div class="row g-0">
+                    <div class="col-md-12 p-0 text-center">
+
+
+                        <p class="pt-1"><b>@item.ProductName</b> </p>
+                    </div>
+                    <div class="col-md-12 m-0">
+                        <img src="@item.ImgUrl" style="height:50vh" width="100%">
+                    </div>
+                    <div class="col-md-12">
+
+
+                        <div class="card-body">
+                            <p class="card-text"><b>Description: </b>@item.ProductDescription</p>
+
+                            <p class="card-text"> <b><i>Available Products : </i></b>  @item.NumberOfProducts</p>
+                            <p class="card-text"><b>Price: </b>@item.Price</p>
+                            
+
+                            <a class="btn btn-success text-white" asp-area="foods" asp-controller="Orders" asp-action="Create">Order Now</a>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+    }
+</div>
 <p>
-    
-
-
-    <span>
-        <a  class="btn btn-dark mt-3" style="margin-top:5px" href="https://localhost:44366/Foods/Orders/Create">Order Food</a>
-
-    </span>
-    <span>
-         <a asp-action="Create" class="btn btn-dark mt-3" >Create More</a>
-
-    </span>
-    
-   
+    <a asp-action="Create" class="btn btn-dark text-white">Create New</a>
 </p>

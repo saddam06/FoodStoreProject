@@ -10,7 +10,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
-            <div class="container">
+            <div class="container-fluid">
                 
                 <a class="navbar-brand" asp-area="" asp-page="/Index">FoodStore</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -48,18 +48,28 @@
                         </li>
                     </ul>
                 </div>
+                <form class="form-inline mt-md-3" method="get" asp-area="foods" asp-controller="Products" asp-action="Index">
+                    <p class="float-right">
+                        <input type="text" class="pb-1 pl-3 mt-1 pr-3" placeholder="Search Food" name="SeachString" />
+                        <input type="submit" value="Search" class="btn btn-dark" />
+                        <a asp-area="foods" asp-controller="Products" asp-action="Index" class="btn btn-dark text-white">View All</a>
+
+
+                    </p>
+
+                </form>
             </div>
         </nav>
     </header>
     
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer bg-dark mt-5">
-        <div class="container text-center">
+        <div class="container-fluid text-center">
            <p style="color:white">Designed And Developed By Saddam</p>
         </div>
     </footer>

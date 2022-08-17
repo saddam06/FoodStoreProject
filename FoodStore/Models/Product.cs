@@ -18,10 +18,18 @@ namespace FoodStore.Models
         public string ProductName { get; set; }
 
         [Required]
+        public string ProductDescription { get; set; }
+
+        [Required]
+        public string ImgUrl { get; set; }
+
+
+        [Required]
         [DefaultValue(false)]
         public short NumberOfProducts { get; set; }
 
         [Required]
+        [Display(Name ="Price Per Item")]
         public decimal Price { get; set; }
 
         [Display(Name = "Select Food Category")]
